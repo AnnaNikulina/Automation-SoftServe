@@ -1,0 +1,14 @@
+node_modules/
+package-lock.json
+playwright-report/
+test-results/
+trace.zip
+*.log
+*.png
+*.jpg
+*.mp4
+*.webm
+.vscode/
+.idea/
+.env
+.prettierrc
