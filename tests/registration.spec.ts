@@ -1,25 +1,23 @@
 import {test, expect} from '@playwright/test';
 import {RegistrationPage} from '../pages/RegistrationPage';
+import {DashboardPage} from '../pages/DashboardPage';
+import {UserGenerator} from '../helpers/UserDataRegistration'
 
 test.describe('Registration Test', () => {
   let registrationPage: RegistrationPage;
+  let dashboardPage: DashboardPage;
   
   test.beforeEach(async ({ page }) => {
     registrationPage = new RegistrationPage(page); 
+    dashboardPage = new DashboardPage(page); 
     await registrationPage.goto();
 });
 
   test('Registration process', async ({ page }) => {
-    const timestamp = Date.now();
-    const firstname = `First${timestamp}`;
-    const lastname = `Last${timestamp}`;
-    const username = `user${timestamp}`;
-    const email = `user${timestamp}@example.com`;
-    const password = 'StrongPassword123!';
-    
-    await registrationPage.registration(firstname, lastname, username, email, password);
-    await expect(registrationPage.registrationPageText).toContainText(`Welcome to GitLab,${firstname}!`);
-    await registrationPage.selectRoleAndReason();
-    await expect(registrationPage.page).toHaveURL('https://gitlab.testautomate.me/dashboard/projects');
+    const user = UserGenerator.generateUser();
+    await registrationPage.registration(user.firstName, user.lastName, user.username, user.email, user.password);
+    await expect(registrationPage.registrationPageText).toContainText(`Welcome to GitLab,${user.firstName}!`);
+    await registrationPage.selectRoleAndReason(user.role, user.reason);
+    await dashboardPage.checkDashboardURL()
   });
 });

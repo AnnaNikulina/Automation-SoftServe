@@ -1,5 +1,4 @@
 import {expect, Locator, Page} from '@playwright/test';
-import {getRandomItem, roles, reasons} from '../helpers/UserDataRegistration';
 
 export class RegistrationPage {
     public page: Page;
@@ -44,11 +43,9 @@ export class RegistrationPage {
       await this.RegisterButton.click();
     }
 
-    async selectRoleAndReason() {
-      const role = getRandomItem(roles);
-      const reason = getRandomItem(reasons);
-      await this.RoleDropdown.selectOption({ label: role });
-      await this.reasonforsignupDropdown.selectOption({ label: reason });
+    async selectRoleAndReason(role: string, reason: string) {
+      await this.RoleDropdown.selectOption({label:role});
+      await this.reasonforsignupDropdown.selectOption({label: reason});
       await this.finishRegistration.click();
     }
   
