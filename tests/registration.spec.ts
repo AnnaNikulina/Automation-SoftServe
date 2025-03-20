@@ -1,7 +1,8 @@
 import {test, expect} from '@playwright/test';
 import {RegistrationPage} from '../pages/RegistrationPage';
 import {DashboardPage} from '../pages/DashboardPage';
-import {UserGenerator} from '../helpers/UserDataRegistration'
+import {UserGenerator} from '../helpers/UserGenerator';
+import * as fs from 'fs';
 
 test.describe('Registration Test', () => {
   let registrationPage: RegistrationPage;
@@ -19,5 +20,9 @@ test.describe('Registration Test', () => {
     await expect(registrationPage.registrationPageText).toContainText(`Welcome to GitLab,${user.firstName}!`);
     await registrationPage.selectRoleAndReason(user.role, user.reason);
     await dashboardPage.checkDashboardURL()
+
+    const userData = { username: user.username, password: user.password };
+    fs.writeFileSync('./resource/user.json', JSON.stringify(userData));
+  
   });
 });

@@ -13,3 +13,4 @@ trace.zip
 .env
 .prettierrc
 Videos/
+tests/resource/user.json
