@@ -18,6 +18,8 @@ test('Registration Test via API', async ({ request }) => {
     }
   });
 
-  expect([200,201]).toContain(response.status());
+  expect(response.status()).toBe(201);
+  const responseBody = await response.json();
+  expect(responseBody.username).toBe(user.username);
   console.log(user);
 });
