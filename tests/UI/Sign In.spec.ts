@@ -1,5 +1,5 @@
 import {test, expect} from '@playwright/test';
-import {LoginPage} from '../pages/LoginPage';
+import {LoginPage} from '../../pages/LoginPage';
 import * as fs from 'fs';
 
 test.describe('Sign In Test', () => {

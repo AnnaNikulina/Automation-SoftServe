@@ -6,7 +6,7 @@ export class UserGenerator {
       return {
         firstName: faker.person.firstName(),
         lastName: faker.person.lastName(),
-        username: faker.internet.userName() + Date.now(), 
+        username: faker.internet.username() + Date.now(), 
         email: faker.internet.email(),
         password: faker.internet.password(),
         role: faker.helpers.arrayElement (['Software Developer', 'Development Team Lead', 'DevOps Engineer', 'Systems Administrator', 'Security Analyst', 'Data Analyst', "Product Manager", 'Product Designer', 'Other']), 

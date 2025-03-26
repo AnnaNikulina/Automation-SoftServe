@@ -1,7 +1,7 @@
 import {test, expect} from '@playwright/test';
-import {RegistrationPage} from '../pages/RegistrationPage';
-import {DashboardPage} from '../pages/DashboardPage';
-import {UserGenerator} from '../helpers/UserGenerator';
+import {RegistrationPage} from '../../pages/RegistrationPage';
+import {DashboardPage} from '../../pages/DashboardPage';
+import {UserGenerator} from '../../helpers/UI/UserGenerator';
 import * as fs from 'fs';
 
 test.describe('Registration Test', () => {
